@@ -1,0 +1,193 @@
+[
+  {
+    "id": "production-0",
+    "cvss": 0,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "ALLOW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-0",
+    "cvss": 0,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "ALLOW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-3.1",
+    "cvss": 3.1,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "ALLOW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-3.1",
+    "cvss": 3.1,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "ALLOW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-6.9",
+    "cvss": 6.9,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "ALLOW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-6.9",
+    "cvss": 6.9,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "ALLOW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-7",
+    "cvss": 7,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-7",
+    "cvss": 7,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-8.9",
+    "cvss": 8.9,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-8.9",
+    "cvss": 8.9,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-9",
+    "cvss": 9,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "BLOCK",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-9",
+    "cvss": 9,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-9.8",
+    "cvss": 9.8,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "BLOCK",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-9.8",
+    "cvss": 9.8,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "production-10",
+    "cvss": 10,
+    "environment": "production",
+    "internet_facing": true,
+    "expected": "BLOCK",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "staging-10",
+    "cvss": 10,
+    "environment": "staging",
+    "internet_facing": false,
+    "expected": "REVIEW",
+    "justification": "Example SHACL: critical exposed production blocks; high scores review; lower scores conform."
+  },
+  {
+    "id": "missing-score",
+    "cvss": null,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review."
+  },
+  {
+    "id": "incomplete",
+    "cvss": 3,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "complete": false
+  },
+  {
+    "id": "empty",
+    "cvss": 3,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "empty": true
+  },
+  {
+    "id": "unknown-exposure",
+    "cvss": 3,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "internet_facing": null
+  },
+  {
+    "id": "nvd-failure",
+    "cvss": 3,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "failure": "cve"
+  },
+  {
+    "id": "graph-failure",
+    "cvss": 3,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "failure": "context"
+  },
+  {
+    "id": "critical-incomplete",
+    "cvss": 10,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "complete": false
+  },
+  {
+    "id": "critical-internal",
+    "cvss": 10,
+    "environment": "production",
+    "expected": "REVIEW",
+    "justification": "Unavailable evidence/failure requires review; high internal risk also requires review.",
+    "internet_facing": false
+  }
+]

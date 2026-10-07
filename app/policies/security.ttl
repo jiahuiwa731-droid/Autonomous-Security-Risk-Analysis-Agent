@@ -1,0 +1,28 @@
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix ex: <urn:security:> .
+
+# Example enterprise policy, not a universal security standard.
+ex:CriticalExposure a sh:NodeShape ;
+    sh:targetClass ex:Asset ;
+    sh:severity sh:Violation ;
+    sh:sparql [
+        sh:message "CVSS >= 9 on an internet-facing production asset requires BLOCK." ;
+        sh:select """
+            PREFIX ex: <urn:security:>
+            SELECT $this WHERE {
+                $this ex:environment "production" ; ex:internetFacing true ; ex:cvss ?score .
+                FILTER (?score >= 9)
+            }
+        """
+    ] .
+
+ex:HighRiskReview a sh:NodeShape ;
+    sh:targetClass ex:Asset ;
+    sh:severity sh:Warning ;
+    sh:sparql [
+        sh:message "CVSS >= 7 requires human review unless a blocking rule applies." ;
+        sh:select """
+            PREFIX ex: <urn:security:>
+            SELECT $this WHERE { $this ex:cvss ?score . FILTER (?score >= 7) }
+        """
+    ] .

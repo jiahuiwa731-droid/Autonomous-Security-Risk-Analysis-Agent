@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "security-risk-agent"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "pydantic>=2.10,<3", "httpx>=0.27,<1", "rdflib>=7,<8", "pyshacl>=0.30,<1", "neo4j>=5,<7", "openai-agents>=0.2,<1"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.24"]
+eval = ["inspect-ai>=0.3"]
+
+[tool.setuptools.packages.find]
+include = ["app*", "evals*"]
+
+[tool.setuptools.package-data]
+app = ["policies/*.ttl"]
+evals = ["cases.json"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+filterwarnings = [
+  "ignore:Dataset.default_context is deprecated, use Dataset.default_graph instead:DeprecationWarning:rdflib.graph",
+  "ignore:Dataset.identifier is deprecated and will be removed in future versions:DeprecationWarning:rdflib.graph",
+]

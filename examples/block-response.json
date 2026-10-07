@@ -1,0 +1,207 @@
+{
+  "run_id": "ee54e73d-62ae-48b1-a0f3-e87966a19781",
+  "model": "deterministic-demo",
+  "goal": {
+    "cve_id": "CVE-2026-1234",
+    "environment": "production"
+  },
+  "decision": "BLOCK",
+  "summary": "CVSS >= 9 on an internet-facing production asset requires BLOCK.; CVSS >= 7 requires human review unless a blocking rule applies.",
+  "evidence": [
+    {
+      "reference": "cve",
+      "source": "fixture:synthetic-cve",
+      "details": {
+        "cve_id": "CVE-2026-1234",
+        "description": "SYNTHETIC demo vulnerability",
+        "cvss": 9.8,
+        "attack_vector": "NETWORK",
+        "affected_products": [
+          "demo-service 1.0"
+        ],
+        "source": "fixture:synthetic-cve"
+      }
+    },
+    {
+      "reference": "context",
+      "source": "fixture:synthetic-graph",
+      "details": {
+        "cve_id": "CVE-2026-1234",
+        "environment": "production",
+        "assets": [
+          {
+            "asset_id": "demo-service",
+            "environment": "production",
+            "internet_facing": true,
+            "criticality": "high",
+            "owner": "demo-platform-team",
+            "dependencies": []
+          }
+        ],
+        "complete": true,
+        "source": "fixture:synthetic-graph"
+      }
+    }
+  ],
+  "policy_findings": [
+    {
+      "rule": "urn:security:CriticalExposure",
+      "severity": "BLOCK",
+      "message": "CVSS >= 9 on an internet-facing production asset requires BLOCK.",
+      "evidence_refs": [
+        "cve",
+        "context"
+      ]
+    },
+    {
+      "rule": "urn:security:HighRiskReview",
+      "severity": "REVIEW",
+      "message": "CVSS >= 7 requires human review unless a blocking rule applies.",
+      "evidence_refs": [
+        "cve",
+        "context"
+      ]
+    }
+  ],
+  "remediation": [
+    {
+      "action": "Restrict exposure and apply the vendor fix after change approval.",
+      "rationale": "CVSS >= 9 on an internet-facing production asset requires BLOCK.; CVSS >= 7 requires human review unless a blocking rule applies.",
+      "owner": "demo-platform-team"
+    }
+  ],
+  "tool_trace": [
+    {
+      "step": 1,
+      "tool": "get_cve_details",
+      "arguments": {
+        "cve_id": "CVE-2026-1234"
+      },
+      "status": "ok",
+      "observation": {
+        "cve_id": "CVE-2026-1234",
+        "description": "SYNTHETIC demo vulnerability",
+        "cvss": 9.8,
+        "attack_vector": "NETWORK",
+        "affected_products": [
+          "demo-service 1.0"
+        ],
+        "source": "fixture:synthetic-cve"
+      },
+      "latency_ms": 0.58
+    },
+    {
+      "step": 2,
+      "tool": "get_asset_context",
+      "arguments": {
+        "cve_id": "CVE-2026-1234",
+        "environment": "production"
+      },
+      "status": "ok",
+      "observation": {
+        "cve_id": "CVE-2026-1234",
+        "environment": "production",
+        "assets": [
+          {
+            "asset_id": "demo-service",
+            "environment": "production",
+            "internet_facing": true,
+            "criticality": "high",
+            "owner": "demo-platform-team",
+            "dependencies": []
+          }
+        ],
+        "complete": true,
+        "source": "fixture:synthetic-graph"
+      },
+      "latency_ms": 0.04
+    },
+    {
+      "step": 3,
+      "tool": "validate_policy",
+      "arguments": {
+        "proposed_decision": "ALLOW"
+      },
+      "status": "ok",
+      "observation": {
+        "conforms": false,
+        "decision": "BLOCK",
+        "findings": [
+          {
+            "rule": "urn:security:CriticalExposure",
+            "severity": "BLOCK",
+            "message": "CVSS >= 9 on an internet-facing production asset requires BLOCK.",
+            "evidence_refs": [
+              "cve",
+              "context"
+            ]
+          },
+          {
+            "rule": "urn:security:HighRiskReview",
+            "severity": "REVIEW",
+            "message": "CVSS >= 7 requires human review unless a blocking rule applies.",
+            "evidence_refs": [
+              "cve",
+              "context"
+            ]
+          }
+        ]
+      },
+      "latency_ms": 22.83
+    },
+    {
+      "step": 4,
+      "tool": "create_remediation",
+      "arguments": {},
+      "status": "ok",
+      "observation": {
+        "actions": [
+          {
+            "action": "Restrict exposure and apply the vendor fix after change approval.",
+            "rationale": "CVSS >= 9 on an internet-facing production asset requires BLOCK.; CVSS >= 7 requires human review unless a blocking rule applies.",
+            "owner": "demo-platform-team"
+          }
+        ]
+      },
+      "latency_ms": 0.01
+    },
+    {
+      "step": 5,
+      "tool": "validate_policy",
+      "arguments": {
+        "proposed_decision": "BLOCK"
+      },
+      "status": "ok",
+      "observation": {
+        "conforms": false,
+        "decision": "BLOCK",
+        "findings": [
+          {
+            "rule": "urn:security:CriticalExposure",
+            "severity": "BLOCK",
+            "message": "CVSS >= 9 on an internet-facing production asset requires BLOCK.",
+            "evidence_refs": [
+              "cve",
+              "context"
+            ]
+          },
+          {
+            "rule": "urn:security:HighRiskReview",
+            "severity": "REVIEW",
+            "message": "CVSS >= 7 requires human review unless a blocking rule applies.",
+            "evidence_refs": [
+              "cve",
+              "context"
+            ]
+          }
+        ]
+      },
+      "latency_ms": 15.0
+    }
+  ],
+  "proposed_decision": {
+    "decision": "BLOCK",
+    "summary": "Synthetic demonstration using configured SHACL rules."
+  },
+  "policy_validated": true
+}
